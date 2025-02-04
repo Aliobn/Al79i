@@ -3,236 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض أعمالي</title>
-    <link href="https://fonts.googleapis.com/css2?family=The+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>استبيان طلب تصميم</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
-
-        :root {
-            --main-color: #000000;
-            --background-color: #f7f7f7;
-            --top-bar-bg: rgba(0, 0, 0, 0.8);
-            --border-thickness: 1px;
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-
-        body, html {
-            height: 100%;
-            width: 100%;
-            font-family: 'The Sans', sans-serif;
-            background-color: var(--background-color);
-            position: relative;
-            background-image: url('https://j.top4top.io/p_3272n7klb0.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-color: transparent;
-            -webkit-user-select: none; /* تعطيل التحديد في متصفحات ويب الكروم */
-            -moz-user-select: none; /* تعطيل التحديد في فايرفوكس */
-            -ms-user-select: none; /* تعطيل التحديد في متصفح إيدج */
-        }
-
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--top-bar-bg);
-            color: white;
-            padding: 8px 20px;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .top-bar .logo img {
-            height: 30px;
-            border-radius: 50%;
-        }
-
-        .social-icons {
-            display: flex;
-        }
-
-        .social-icons img {
-            width: 30px;
-            height: 30px;
-            margin: 0 10px;
-            transition: transform 0.3s ease;
-            filter: invert(1);
-        }
-
-        .social-icons img:hover {
-            transform: scale(1.2);
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 150px;
-            padding-bottom: 40px;
-            z-index: 1;
-        }
-
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            background-color: transparent;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .heading {
-            font-size: 32px;
+        label {
             font-weight: bold;
-            color: var(--main-color);
-            margin-bottom: 10px;
-        }
-
-        .subheading {
-            font-size: 18px;
-            color: var(--main-color);
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 0;
-            margin-top: 40px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: var(--border-thickness) solid #000000;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            cursor: pointer;
             display: block;
+            margin-top: 10px;
         }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-            filter: brightness(0.7);
-        }
-
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        input, select, textarea {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
-
-        .lightbox .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        button {
+            margin-top: 15px;
+            background-color: #28a745;
             color: white;
-            font-size: 30px;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 4px;
             cursor: pointer;
         }
-
-        .lightbox .close:hover {
-            transform: scale(1.1);
+        button:hover {
+            background-color: #218838;
         }
-
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="logo">
-            <img src="https://a.top4top.io/p_3272ba4qt0.jpg" alt="شعار الموقع">
-        </div>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/key_design_am/" target="_blank">
-                <img src="https://c.top4top.io/p_32759jen20.png" alt="إنستجرام">
-            </a>
-            <a href="https://www.tiktok.com/@key_design7" target="_blank">
-                <img src="https://f.top4top.io/p_3271837ug0.png" alt="تيك توك">
-            </a>
-            <a href="https://wa.me/966545473980" target="_blank">
-                <img src="https://h.top4top.io/p_3271w4xxr2.png" alt="واتساب">
-            </a>
-            <a href="mailto:keydesignam@gmail.com" target="_blank">
-                <img src="https://i.top4top.io/p_3271z5xqr3.png" alt="بريد إلكتروني">
-            </a>
-        </div>
-    </div>
+<div class="container">
+    <h2>استبيان طلب تصميم</h2>
+    <form action="submit_form.php" method="POST">
+        <label for="name">الاسم الكامل:</label>
+        <input type="text" id="name" name="name" required>
 
-    <div class="content">
-        <div class="logo-container">
-            <img src="https://a.top4top.io/p_3272ba4qt0.jpg" alt="شعار الموقع">
-        </div>
-        <div class="heading">RMX_DSN</div>
-        <div class="subheading">هنا سترون بعض العلامات التجارية التي صممناها</div>
-    </div>
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" name="email" required>
 
-    <div class="gallery">
-        <img src="https://c.top4top.io/p_32787ftyq0.jpg" alt="تصميم 1" onclick="openLightbox(this)">
-        <img src="https://d.top4top.io/p_3278744nc1.jpg" alt="تصميم 2" onclick="openLightbox(this)">
-        <img src="https://e.top4top.io/p_3278zt0kp2.jpg" alt="تصميم 3" onclick="openLightbox(this)">
-        <img src="https://f.top4top.io/p_32787t2523.jpg" alt="تصميم 4" onclick="openLightbox(this)">
-    <img src="https://e.top4top.io/p_3282bl3jb0.jpg" alt="تصميم 4" onclick="openLightbox(this)">
-    
-    </div>
+        <label for="design_type">نوع التصميم المطلوب:</label>
+        <select id="design_type" name="design_type" required>
+            <option value="logo">شعار</option>
+            <option value="branding">هوية بصرية</option>
+            <option value="social_media">تصاميم سوشيال ميديا</option>
+            <option value="other">أخرى</option>
+        </select>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close">&times;</span>
-        <img id="lightboxImage" src="" alt="صورة مكبرة">
-    </div>
+        <label for="colors">الألوان المفضلة:</label>
+        <input type="text" id="colors" name="colors" placeholder="مثال: أزرق، أسود، أبيض">
 
-    <script>
-        function openLightbox(image) {
-            var lightbox = document.getElementById('lightbox');
-            var lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = image.src;
-            lightbox.style.display = 'flex';
-        }
+        <label for="style">الأسلوب المطلوب:</label>
+        <select id="style" name="style" required>
+            <option value="minimalist">بسيط</option>
+            <option value="modern">حديث</option>
+            <option value="luxury">فاخر</option>
+            <option value="playful">مرح</option>
+        </select>
 
-        function closeLightbox() {
-            var lightbox = document.getElementById('lightbox');
-            lightbox.style.display = 'none';
-        }
+        <label for="details">تفاصيل إضافية:</label>
+        <textarea id="details" name="details" rows="4" placeholder="اكتب أي تفاصيل إضافية هنا..."></textarea>
 
-        // منع النقر بالزر الأيمن
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-    </script>
+        <button type="submit">إرسال الطلب</button>
+    </form>
+</div>
 
 </body>
 </html>
