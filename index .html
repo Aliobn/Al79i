@@ -131,5 +131,153 @@
     </div>
 </div>
 
+    ChatGPT
+
+أنت قلت:
+عمل كود html موقع استبيان لطلب تصميم العميل
+قال ChatGPT:
+ChatGPT
+إليك كود HTML بسيطًا لإنشاء صفحة استبيان لطلب تصميم العميل. يتضمن النموذج (form) أسئلة حول تفاصيل التصميم المطلوب، مثل نوع التصميم، الألوان المفضلة، والأسلوب المطلوب. يمكنك تحسينه وإضافة CSS و JavaScript حسب الحاجة.
+
+كود HTML لاستبيان طلب التصميم
+html
+نسخ الكود
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان طلب تصميم</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 15px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>استبيان طلب تصميم</h2>
+    <form action="submit_form.php" method="POST">
+        <label for="name">الاسم الكامل:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="design_type">نوع التصميم المطلوب:</label>
+        <select id="design_type" name="design_type" required>
+            <option value="logo">شعار</option>
+            <option value="branding">هوية بصرية</option>
+            <option value="social_media">تصاميم سوشيال ميديا</option>
+            <option value="other">أخرى</option>
+        </select>
+
+        <label for="colors">الألوان المفضلة:</label>
+        <input type="text" id="colors" name="colors" placeholder="مثال: أزرق، أسود، أبيض">
+
+        <label for="style">الأسلوب المطلوب:</label>
+        <select id="style" name="style" required>
+            <option value="minimalist">بسيط</option>
+            <option value="modern">حديث</option>
+            <option value="luxury">فاخر</option>
+            <option value="playful">مرح</option>
+        </select>
+
+        <label for="details">تفاصيل إضافية:</label>
+        <textarea id="details" name="details" rows="4" placeholder="اكتب أي تفاصيل إضافية هنا..."></textarea>
+
+        <button type="submit">إرسال الطلب</button>
+    </form>
+</div>
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $design_type = htmlspecialchars($_POST['design_type']);
+    $colors = htmlspecialchars($_POST['colors']);
+    $style = htmlspecialchars($_POST['style']);
+    $details = htmlspecialchars($_POST['details']);
+
+    // بريد المستلم (بريدك الشخصي)
+    $to = "aliibrahimobn@gmail.com";
+
+    // عنوان البريد
+    $subject = "طلب تصميم جديد من $name";
+
+    // محتوى البريد
+    $message = "
+    <html>
+    <head>
+        <title>طلب تصميم جديد</title>
+    </head>
+    <body>
+        <h2>تفاصيل الطلب:</h2>
+        <p><strong>الاسم:</strong> $name</p>
+        <p><strong>البريد الإلكتروني:</strong> $email</p>
+        <p><strong>نوع التصميم المطلوب:</strong> $design_type</p>
+        <p><strong>الألوان المفضلة:</strong> $colors</p>
+        <p><strong>الأسلوب المطلوب:</strong> $style</p>
+        <p><strong>تفاصيل إضافية:</strong> $details</p>
+    </body>
+    </html>
+    ";
+
+    // إعدادات البريد
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+    $headers .= "From: $email" . "\r\n";
+
+    // إرسال البريد
+    if (mail($to, $subject, $message, $headers)) {
+        echo "<script>alert('تم إرسال الطلب بنجاح! سيتم التواصل معك قريبًا.'); window.location.href='index.html';</script>";
+    } else {
+        echo "<script>alert('حدث خطأ أثناء الإرسال، حاول مرة أخرى.'); window.history.back();</script>";
+    }
+} else {
+    header("Location: index.html");
+    exit();
+}
+?>
+
 </body>
 </html>
