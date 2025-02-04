@@ -5,45 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>استبيان طلب تصميم</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Cairo', sans-serif;
             direction: rtl;
             text-align: right;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
         .container {
             max-width: 500px;
-            margin: auto;
+            width: 100%;
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
         }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
         label {
-            font-weight: bold;
+            font-weight: 600;
             display: block;
-            margin-top: 10px;
+            margin: 12px 0 5px;
+            color: #555;
         }
+
         input, select, textarea {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
         }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
         button {
             margin-top: 15px;
-            background-color: #28a745;
+            background: #007bff;
             color: white;
-            padding: 10px;
+            padding: 12px;
             border: none;
             width: 100%;
-            border-radius: 4px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
         }
+
         button:hover {
-            background-color: #218838;
+            background: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #777;
         }
     </style>
 </head>
@@ -53,13 +95,14 @@
     <h2>استبيان طلب تصميم</h2>
     <form action="submit_form.php" method="POST">
         <label for="name">الاسم الكامل:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
 
         <label for="email">البريد الإلكتروني:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required>
 
         <label for="design_type">نوع التصميم المطلوب:</label>
         <select id="design_type" name="design_type" required>
+            <option value="" disabled selected>اختر نوع التصميم</option>
             <option value="logo">شعار</option>
             <option value="branding">هوية بصرية</option>
             <option value="social_media">تصاميم سوشيال ميديا</option>
@@ -71,6 +114,7 @@
 
         <label for="style">الأسلوب المطلوب:</label>
         <select id="style" name="style" required>
+            <option value="" disabled selected>اختر الأسلوب</option>
             <option value="minimalist">بسيط</option>
             <option value="modern">حديث</option>
             <option value="luxury">فاخر</option>
@@ -78,10 +122,13 @@
         </select>
 
         <label for="details">تفاصيل إضافية:</label>
-        <textarea id="details" name="details" rows="4" placeholder="اكتب أي تفاصيل إضافية هنا..."></textarea>
+        <textarea id="details" name="details" placeholder="اكتب أي تفاصيل إضافية هنا..."></textarea>
 
         <button type="submit">إرسال الطلب</button>
     </form>
+    <div class="footer">
+        &copy; 2025 جميع الحقوق محفوظة
+    </div>
 </div>
 
 </body>
