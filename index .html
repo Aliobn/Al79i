@@ -93,7 +93,55 @@
 
 <div class="container">
     <h2>استبيان طلب تصميم</h2>
-    <form action="submit_form.php" method="POST">
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $design_type = htmlspecialchars($_POST['design_type']);
+        $colors = htmlspecialchars($_POST['colors']);
+        $style = htmlspecialchars($_POST['style']);
+        $details = htmlspecialchars($_POST['details']);
+
+        // بريد المستلم (بريدك الشخصي)
+        $to = "aliibrahimobn@gmail.com";
+
+        // عنوان البريد
+        $subject = "طلب تصميم جديد من $name";
+
+        // محتوى البريد
+        $message = "
+        <html>
+        <head>
+            <title>طلب تصميم جديد</title>
+        </head>
+        <body>
+            <h2>تفاصيل الطلب:</h2>
+            <p><strong>الاسم:</strong> $name</p>
+            <p><strong>البريد الإلكتروني:</strong> $email</p>
+            <p><strong>نوع التصميم المطلوب:</strong> $design_type</p>
+            <p><strong>الألوان المفضلة:</strong> $colors</p>
+            <p><strong>الأسلوب المطلوب:</strong> $style</p>
+            <p><strong>تفاصيل إضافية:</strong> $details</p>
+        </body>
+        </html>
+        ";
+
+        // إعدادات البريد
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+        $headers .= "From: $email" . "\r\n";
+
+        // إرسال البريد
+        if (mail($to, $subject, $message, $headers)) {
+            echo "<p style='color: green; text-align: center;'>✅ تم إرسال الطلب بنجاح! سيتم التواصل معك قريبًا.</p>";
+        } else {
+            echo "<p style='color: red; text-align: center;'>❌ حدث خطأ أثناء الإرسال، حاول مرة أخرى.</p>";
+        }
+    }
+    ?>
+
+    <form action="" method="POST">
         <label for="name">الاسم الكامل:</label>
         <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
 
@@ -126,10 +174,11 @@
 
         <button type="submit">إرسال الطلب</button>
     </form>
+
     <div class="footer">
         &copy; 2025 جميع الحقوق محفوظة
     </div>
 </div>
 
-    </body>
+</body>
 </html>
